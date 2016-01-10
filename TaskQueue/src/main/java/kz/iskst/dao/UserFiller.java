@@ -18,7 +18,7 @@ public class UserFiller extends Filler<User> {
 	@Override
 	public void fillInsert(User object, PreparedStatement ps) {
 		
-		logger.debug("try to fill PrepredStatement user object");
+		logger.debug("try to fill PreparedStatement user object");
 		try{
 		    	
 			ps.setInt(1, object.getId());
