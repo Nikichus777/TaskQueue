@@ -1,7 +1,10 @@
-<%@ page import="kz.iskst.model.User"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="kz.iskst.model.User"%>
+<%@ page import="java.util.List"%>
+<%@ page import="kz.iskst.model.UserRequest"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Очередь задач сисадмина КДП</title>
@@ -25,14 +28,21 @@
 	      
                  <div id="header_lower">  <div id="header_content_boxline">About Us <div id="header_content_boxcontent">
 				 <p style="color:RED">Чтобы добавлять свои задачи в очередь необходимо войти</p>
-				 <table border = "1" align = "center" width = "790">
-		<br><br><br><caption>Таблица задач сисадмина</caption>
-		<tr><th>Номер</th><th>ФИО</th><th>Проблема</th><th>Срочность</th><th>Время</th></tr>
-		<% for (int x=10; x>0; x--) { %>
-		<tr><td>1</td><td>USER</td><td>Autocad</td><td>priority</td><td>07.01.2016:18:10</td></tr>
+				 
+				 <table border = "1" align = "center" width = "790">				
+		<caption>Таблица задач сисадмина</caption>
+		<tr ><th>Номер</th><th>ФИО</th><th>Проблема</th><th>Срочность</th><th>Время</th></tr>
+		<% List<UserRequest> list =  (List<UserRequest>) request.getAttribute("allRequestList");
+			for (UserRequest req : list) { %>
+		<tr><td>${req.id}<%=req.getId() %></td><td>${req.user}<%=req.getUser().getName() %></td><td>${req.problem} <%= req.getProblemString() %></td><td>${req.priority } <%=req.getPriority() %></td><td>${req.date }<%=req.getTime() %></td></tr>
 		<%} %>
+				
 	</table>
-
+	<% if (list == null){ %>
+	<br />Список пуст
+		<% } else {%>
+		<br> HUI PIZDA JIGURDA</br>
+		<%} %>
  </div></div> 
           </div>    
         </div>

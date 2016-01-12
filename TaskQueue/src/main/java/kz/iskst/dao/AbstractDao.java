@@ -48,7 +48,8 @@ public abstract class AbstractDao<T> {
    }
    
 	protected T selectById(String sql, Extractor<T> extractor, Enricher<T> enricher, int id) throws DaoException, NoSuchEntityException {
-    	Connection conn = getConnection();
+    	logger.debug("selectById start");
+		Connection conn = getConnection();
     	try {
 		    T result;
 		    
@@ -58,8 +59,10 @@ public abstract class AbstractDao<T> {
 		    if (rs.next()) {
 			result = extractor.extractOne(rs);
 			enricher.enrich(result);
+			logger.debug("selectById succefull");
 			return result;
 	    }
+		 
 	    throw new NoSuchEntityException("AbstractDao.selectById ");
 	} catch (SQLException se) {
 	    se.printStackTrace();
@@ -74,13 +77,14 @@ public abstract class AbstractDao<T> {
     protected List<T> selectAll(String sql, Extractor<T> extractor, Enricher<T> enricher) throws DaoException, NoSuchEntityException {
 		Connection conn = getConnection();
     	try {
-    		
+    		logger.debug("selectAll start");
     		List<T> result = null;
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			result = extractor.extractAll(rs);
 			if (result != null){
 				enricher.enrichAll(result);
+				logger.debug("selectAll succefull");
 				return result;
 		}
 			else throw new NoSuchEntityException("AbstractDao.selectAll");
