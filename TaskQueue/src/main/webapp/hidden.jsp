@@ -1,7 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="kz.iskst.model.User"%>
-<%@ page import="java.util.List"%>
-<%@ page import="kz.iskst.model.UserRequest"%>
+<%@ page import="kz.iskst.model.User, java.util.List, kz.iskst.model.UserRequest" isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -27,22 +25,7 @@
 </div>
 	      
                  <div id="header_lower">  <div id="header_content_boxline">About Us <div id="header_content_boxcontent">
-				 <p style="color:RED">Чтобы добавлять свои задачи в очередь необходимо войти</p>
-				 
-				 <table border = "1" align = "center" width = "790">				
-		<caption>Таблица задач сисадмина</caption>
-		<tr ><th>Номер</th><th>ФИО</th><th>Проблема</th><th>Срочность</th><th>Время</th></tr>
-		<% List<UserRequest> list =  (List<UserRequest>) request.getAttribute("allRequestList");
-			for (UserRequest req : list) { %>
-		<tr><td>${req.id}<%=req.getId() %></td><td>${req.user}<%=req.getUser().getName() %></td><td>${req.problem} <%= req.getProblemString() %></td><td>${req.priority } <%=req.getPriority() %></td><td>${req.date }<%=req.getTime() %></td></tr>
-		<%} %>
-				
-	</table>
-	<% if (list == null){ %>
-	<br />Список пуст
-		<% } else {%>
-		<br> HUI PIZDA JIGURDA</br>
-		<%} %>
+				 <%@ include file="/fullList.jsp"%>
  </div></div> 
           </div>    
         </div>
@@ -62,8 +45,10 @@
 	</div> 
           </div>
           
-          <div id="header_lower">  <div id="header_content_lowerline">Clients
-            <div id="header_content_lowerboxcontent">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est </div>
+          <div id="header_lower">  <div id="header_content_lowerline">Еще один блок
+          <div id="header_content_lowerboxcontent">
+            Какая то информация
+            </div>
 	</div> 
           </div>
 

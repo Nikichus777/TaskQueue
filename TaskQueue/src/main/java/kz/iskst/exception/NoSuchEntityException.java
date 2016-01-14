@@ -1,4 +1,4 @@
-package kz.iskst.dao;
+package kz.iskst.exception;
 
 public class NoSuchEntityException  extends Exception{
 

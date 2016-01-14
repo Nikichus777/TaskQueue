@@ -21,13 +21,13 @@ public class ConnectionFactoryC3p0 implements ConnectionFactory {
 			cpds.setDriverClass(DRIVER);
 			cpds.setAcquireIncrement(3);
 			cpds.setMinPoolSize(1);
-			cpds.setMaxPoolSize(30);
-			cpds.setLogWriter(new PrintWriter("C:/c3p0-Log.txt"));
+			cpds.setMaxPoolSize(100);
+			//cpds.setLogWriter(new PrintWriter("C:/c3p0-Log.txt"));
 			cpds.setAutoCommitOnClose(false);
 			
-			cpds.setLoginTimeout(50000);
-			cpds.setMaxStatements(30);
-			cpds.setCheckoutTimeout(5000);
+			cpds.setLoginTimeout(500);
+			cpds.setMaxStatements(50);
+			cpds.setCheckoutTimeout(500);
     	}
     	catch (SQLException se){
     		System.out.println("SEttings in static connection pool C3p0 failed");
@@ -36,9 +36,9 @@ public class ConnectionFactoryC3p0 implements ConnectionFactory {
     	catch (PropertyVetoException e) {
 			e.printStackTrace();
 		} 
-    	catch (FileNotFoundException e) {
+    	/*catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
+		}*/
     }
     
     public ConnectionFactoryC3p0() {

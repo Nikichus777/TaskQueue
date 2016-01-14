@@ -6,11 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-
-
-
-
-
+import kz.iskst.exception.DaoException;
+import kz.iskst.exception.NoSuchEntityException;
 import kz.iskst.model.User;
 
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {

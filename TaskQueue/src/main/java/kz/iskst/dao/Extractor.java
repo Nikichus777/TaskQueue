@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import kz.iskst.exception.DaoException;
+
 public abstract class Extractor<T> {
     	/* 
     	 * This method use <code>rs.next()</code> himself

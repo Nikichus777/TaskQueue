@@ -47,11 +47,11 @@ public class UserRequest {
 		return problem.toString();
 	}
 	public void setProblem(Problems problem) {
-		this.problem = problem;
+		if (problem != null) this.problem = problem;
 	}
 	
 	private void setProblem(String problem) {
-		
+		if (problem == null) problem = "OTHER";
 		switch (problem) {
 			case "NETWORK_NOT_WORK" : this.problem = Problems.NETWORK_NOT_WORK; break;
 			case "PC_NOT_LOAD" : this.problem = Problems.PC_NOT_LOAD; break;

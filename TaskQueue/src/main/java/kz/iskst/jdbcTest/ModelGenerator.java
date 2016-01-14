@@ -44,7 +44,7 @@ public class ModelGenerator {
 	return us;
 	}
 	
-	public List<UserRequest> getUserRequestsList(int count){
+	public List<UserRequest> getUserRequestsList(int count) throws Exception{
 	    List<UserRequest> ur = new ArrayList<UserRequest>();
 	    Random random = new Random(10000);
 		int rand = 0;

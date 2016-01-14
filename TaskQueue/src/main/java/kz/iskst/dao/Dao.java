@@ -2,6 +2,9 @@ package kz.iskst.dao;
 
 import java.util.List;
 
+import kz.iskst.exception.DaoException;
+import kz.iskst.exception.NoSuchEntityException;
+
 public interface Dao<T> {
 
 	public abstract T selectById(int id) throws DaoException, NoSuchEntityException;

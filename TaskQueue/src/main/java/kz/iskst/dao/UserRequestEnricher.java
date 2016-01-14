@@ -3,6 +3,8 @@ package kz.iskst.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import kz.iskst.exception.DaoException;
+import kz.iskst.exception.NoSuchEntityException;
 import kz.iskst.model.User;
 import kz.iskst.model.UserRequest;
 

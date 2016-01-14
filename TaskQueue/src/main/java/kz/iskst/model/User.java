@@ -84,22 +84,21 @@ public class User {
     public String getLogin() {
         return login;
     }
-    
+    // if (Pattern.matches("^[A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*$", login))
     public void setLogin(String login) {
-        if (Pattern.matches("^[A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*$", login)) this.login = login;
-        else throw new RuntimeException("Login matcher");
+       this.login = login;
     }
     
     public String getEmail() {
         return email;
     }
     
+    /*Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+    Matcher matcher = pattern.matcher(email);
+    if (matcher.matches())*/
+
     public void setEmail(String email) {
-        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        				  
-        Matcher matcher = pattern.matcher(email);
-        if (matcher.matches())	this.email = email;
-        else throw new RuntimeException("incorrect email");
+	this.email = email;
     }
     
     public User(String login, String email) {
@@ -202,7 +201,7 @@ public class User {
 		+ "]";
     }
 
-    public static void main(String ... args){
+    public static void main(String ... args) throws Exception{
 	    new User("ss._dsd2343","_aa@ff.rr");
 	    System.out.println("create successfully");
 	}

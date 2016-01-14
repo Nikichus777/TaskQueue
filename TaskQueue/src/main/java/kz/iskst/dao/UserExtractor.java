@@ -3,6 +3,7 @@ package kz.iskst.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import kz.iskst.exception.DaoException;
 import kz.iskst.model.User;
 
 public class UserExtractor extends Extractor<User> {
@@ -11,7 +12,9 @@ public class UserExtractor extends Extractor<User> {
 	public User extractOne(ResultSet rs) throws DaoException {
 	    	try{
 			    	
-		User us = new User(rs.getString("login"),rs.getString("email")); 
+		User us = new User();
+		us.setLogin(rs.getString("login"));
+		us.setEmail(rs.getString("email"));
 		us.setId(rs.getInt("id"));
 		if (rs.getString("password") != null)
 		us.setPassword(rs.getString("password"));

@@ -8,9 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import kz.iskst.exception.DaoException;
+import kz.iskst.exception.NoSuchEntityException;
 
-import kz.iskst.model.User;
+import org.apache.log4j.Logger;
 
 public abstract class AbstractDao<T> {
     Logger logger = Logger.getLogger(AbstractDao.class);
@@ -23,7 +24,7 @@ public abstract class AbstractDao<T> {
 	
     private Connection getConnection() throws DaoException {
 	logger.debug("Try to get connection");
-	TransactionManager txManager = new TransactionManagerImpl();
+	txManager = new TransactionManagerImpl();
 	Connection conn = txManager.getConnection();
 	if (conn != null)
 	    return conn;
@@ -34,7 +35,7 @@ public abstract class AbstractDao<T> {
     }
 	
    private Connection getSerizlizableConnection() throws DaoException{
-	    	TransactionManager txManager = new TransactionManagerImpl();
+	    	txManager = new TransactionManagerImpl();
 		   Connection conn = txManager.getConnection();
 	   try {
 		  
@@ -47,58 +48,57 @@ public abstract class AbstractDao<T> {
 	   } 	  
    }
    
-	protected T selectById(String sql, Extractor<T> extractor, Enricher<T> enricher, int id) throws DaoException, NoSuchEntityException {
-    	logger.debug("selectById start");
-		Connection conn = getConnection();
-    	try {
-		    T result;
-		    
-		    PreparedStatement ps = conn.prepareStatement(sql);
-		    ps.setInt(1, id);
-		    ResultSet rs = ps.executeQuery();
-		    if (rs.next()) {
-			result = extractor.extractOne(rs);
-			enricher.enrich(result);
-			logger.debug("selectById succefull");
-			return result;
+    protected T selectById(String sql, Extractor<T> extractor,
+	    Enricher<T> enricher, int id) throws DaoException,
+	    NoSuchEntityException {
+	logger.debug("selectById start");
+	Connection conn = getConnection();
+	try {
+	    T result;
+
+	    PreparedStatement ps = conn.prepareStatement(sql);
+	    ps.setInt(1, id);
+	    ResultSet rs = ps.executeQuery();
+	    if (rs.next()) {
+		result = extractor.extractOne(rs);
+		enricher.enrich(result);
+		logger.debug("selectById succefull");
+		return result;
 	    }
-		 
+
 	    throw new NoSuchEntityException("AbstractDao.selectById ");
 	} catch (SQLException se) {
 	    se.printStackTrace();
 	    throw new DaoException(sql);
-	}
-	finally {
-		closeQuietly(conn);
+	} finally {
+	    closeQuietly(conn);
 	}
     }
 
-    
-    protected List<T> selectAll(String sql, Extractor<T> extractor, Enricher<T> enricher) throws DaoException, NoSuchEntityException {
-		Connection conn = getConnection();
-    	try {
-    		logger.debug("selectAll start");
-    		List<T> result = null;
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			result = extractor.extractAll(rs);
-			if (result != null){
-				enricher.enrichAll(result);
-				logger.debug("selectAll succefull");
-				return result;
-		}
-			else throw new NoSuchEntityException("AbstractDao.selectAll");
-	    	} catch (SQLException se) {
-	    		se.printStackTrace();
-			throw new DaoException(sql);
-			}
-	    	finally{
-	    		closeQuietly(conn);
-	    	}
-	
+    protected List<T> selectAll(String sql, Extractor<T> extractor,
+	    Enricher<T> enricher) throws DaoException, NoSuchEntityException {
+	Connection conn = getConnection();
+	try {
+	    logger.debug("selectAll start");
+	    List<T> result = null;
+	    PreparedStatement ps = conn.prepareStatement(sql);
+	    ResultSet rs = ps.executeQuery();
+	    result = extractor.extractAll(rs);
+	    if (result != null) {
+		enricher.enrichAll(result);
+		logger.debug("selectAll succefull");
+		return result;
+	    } else
+		throw new NoSuchEntityException("AbstractDao.selectAll");
+	} catch (SQLException se) {
+	    se.printStackTrace();
+	    throw new DaoException(sql);
+	} finally {
+	    closeQuietly(conn);
+	}
+
     }
 
-  
     protected int insert(String sql, T object, Filler<T> filler) throws DaoException {
     		Connection conn = null;
     	try {
@@ -193,9 +193,12 @@ public abstract class AbstractDao<T> {
     
     protected void closeQuietly(Connection conn) throws DaoException {
     	try{
-    	    	logger.debug("try to commit and close connection");
+    	    logger.debug("try to commit and close connection");
+    	    if (conn != null){
 	    	conn.commit();
 	    	conn.close();
+	    	txManager = null;
+	    	}
     	}
     	catch(SQLException se){
     		se.printStackTrace();

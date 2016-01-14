@@ -3,6 +3,7 @@ package kz.iskst.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import kz.iskst.exception.DaoException;
 import kz.iskst.model.User;
 import kz.iskst.model.UserRequest;
 
@@ -25,8 +26,7 @@ public class UserRequestExtractor extends Extractor<UserRequest> {
 		    
 		    User user = new User();
 		    user.setLogin(rs.getString("user"));
-		    //user.setEmail(null);
-		    //user.setLogin(null);
+		   
 		    UserRequest ureq = new UserRequest(user,rs.getString("problem"),rs.getInt("priority"),rs.getLong("time"));
 		    ureq.setId(rs.getInt("id"));
 		

@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import kz.iskst.dao.ConnectionFactoryFactory.FactoryType;
+import kz.iskst.exception.DaoException;
+import kz.iskst.exception.NoSuchEntityException;
 import kz.iskst.model.User;
 import kz.iskst.model.UserRequest;
 

@@ -15,7 +15,7 @@ import kz.iskst.dao.ConnectionFactoryFactory.FactoryType;
  */
 public class TransactionManagerImpl implements TransactionManager {
     private ThreadLocal<Connection> connectionHolder = new ThreadLocal<Connection>();
-    private FactoryType connType = FactoryType.DBCP;
+    private FactoryType connType = FactoryType.PROXOOL;
 
     public Connection getConnection() {
 	Connection connect = connectionHolder.get();

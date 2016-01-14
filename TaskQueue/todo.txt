@@ -1,7 +1,7 @@
 	Todo:	1. TransactionManager посмотреть реализацию, переделать у себ€
-			2. Log4j = покрыть логами, настроить ConversionPattern
+			2. Log4j = покрыть логами
 			3. Servlets - создать сервлеты (дл€ главной страницы и т.д.)
 			4. Dependency Injection сделать через рефлексию и наследование
 			5. —оздать Unit тесты дл€ всех классов
 			
-			
+			ѕроблема - утечка connection, поможет(?) рефакторинг TransactionManager(источник connection)

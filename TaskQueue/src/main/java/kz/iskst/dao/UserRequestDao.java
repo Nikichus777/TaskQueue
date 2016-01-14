@@ -2,6 +2,7 @@ package kz.iskst.dao;
 
 import java.util.Date;
 
+import kz.iskst.exception.DaoException;
 import kz.iskst.model.User;
 import kz.iskst.model.UserRequest;
 
