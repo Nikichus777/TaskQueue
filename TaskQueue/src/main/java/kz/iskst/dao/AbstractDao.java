@@ -16,16 +16,17 @@ import org.apache.log4j.Logger;
 public abstract class AbstractDao<T> {
     Logger logger = Logger.getLogger(AbstractDao.class);
     
-    private TransactionManager txManager;
+   // protected static TransactionManager txManager = new TransactionManagerImpl(); // -static
 	
+    static //non-static
 	{
-		txManager = new TransactionManagerImpl();
+    	 //txManager = new TransactionManagerImpl();
 	}
 	
-    private Connection getConnection() throws DaoException {
+    protected Connection getConnection() throws DaoException {
 	logger.debug("Try to get connection");
-	txManager = new TransactionManagerImpl();
-	Connection conn = txManager.getConnection();
+	//txManager = new TransactionManagerImpl();
+	Connection conn = TransactionManagerImpl.getConnection();
 	if (conn != null)
 	    return conn;
 	else
@@ -34,9 +35,9 @@ public abstract class AbstractDao<T> {
 		    new SQLException());
     }
 	
-   private Connection getSerizlizableConnection() throws DaoException{
-	    	txManager = new TransactionManagerImpl();
-		   Connection conn = txManager.getConnection();
+   protected Connection getSerizlizableConnection() throws DaoException{
+	    	//txManager = new TransactionManagerImpl();
+		   Connection conn = TransactionManagerImpl.getConnection();
 	   try {
 		  
 		   conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
@@ -71,7 +72,7 @@ public abstract class AbstractDao<T> {
 	    se.printStackTrace();
 	    throw new DaoException(sql);
 	} finally {
-	    closeQuietly(conn);
+	  //  closeQuietly(conn);
 	}
     }
 
@@ -94,7 +95,7 @@ public abstract class AbstractDao<T> {
 	    se.printStackTrace();
 	    throw new DaoException(sql);
 	} finally {
-	    closeQuietly(conn);
+	 //   closeQuietly(conn);
 	}
 
     }
@@ -120,7 +121,7 @@ public abstract class AbstractDao<T> {
     	    throw new DaoException(sql);
     	}
     	finally{
-    	    closeQuietly(conn);
+    	//    closeQuietly(conn);
 	    }
     	}
     
@@ -144,7 +145,7 @@ public abstract class AbstractDao<T> {
 	    se.printStackTrace();
 	    throw new DaoException(sql);
 	} finally {
-	   closeQuietly(conn);
+	  // closeQuietly(conn);
 	    }
 	
     }
@@ -162,7 +163,7 @@ public abstract class AbstractDao<T> {
 	    se.printStackTrace();
 	    throw new DaoException(sql);
 	} finally {
-	    closeQuietly(conn);
+	  //  closeQuietly(conn);
 	}
     }
 	
@@ -180,7 +181,7 @@ public abstract class AbstractDao<T> {
     		throw new DaoException(sql);
     	}
     	finally{
-    		closeQuietly(conn);
+    		//closeQuietly(conn);
     	}
     }
 	
@@ -196,8 +197,7 @@ public abstract class AbstractDao<T> {
     	    logger.debug("try to commit and close connection");
     	    if (conn != null){
 	    	conn.commit();
-	    	conn.close();
-	    	txManager = null;
+	    	conn.close();	    	
 	    	}
     	}
     	catch(SQLException se){

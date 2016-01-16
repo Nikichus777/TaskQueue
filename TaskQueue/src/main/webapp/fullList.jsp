@@ -11,4 +11,5 @@
 		<%} %>
 				
 	</table>
-	${error} <br></br>
+	${error}
+	<br>${transactionErrors} <br></br>

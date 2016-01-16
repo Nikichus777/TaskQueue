@@ -7,14 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Stream;
 
-import kz.iskst.dao.ConnectionFactoryFactory.FactoryType;
 import kz.iskst.exception.DaoException;
 import kz.iskst.exception.NoSuchEntityException;
 import kz.iskst.model.User;
@@ -36,19 +31,19 @@ public class UserRequestDaoImpl extends AbstractDao<UserRequest> implements User
     public static final String UPDATE = "UPDATE `jdbc`.`UserRequest` SET `USER`=?, `PROBLEM`=?, `PRIORITY`=?, `TIME`=? WHERE `id`=?";
     public static final String DELETE = "DELETE FROM `jdbc`.`UserRequest` WHERE `id`=?";
     
-    private TransactionManager txManager;
+    //private TransactionManager txManager;
     private Connection conn;
     
-    public TransactionManager getTxManager() {
+   /* public TransactionManager getTxManager() {
 		return txManager;
-	}
+	}*/
 
 	
 	@Override
     public UserRequest selectRequestByUser(User user) throws DaoException {
 		try{
-			TransactionManager txManager = new TransactionManagerImpl();
-			Connection conn = txManager.getConnection();
+			//TransactionManager txManager = new TransactionManagerImpl();
+			Connection conn = getConnection();
 			PreparedStatement ps = conn.prepareStatement(SELECT_BY_USER_LOGIN);
 	    	ps.setString(1, user.getLogin());
 	    	ResultSet rs = ps.executeQuery();
@@ -60,7 +55,7 @@ public class UserRequestDaoImpl extends AbstractDao<UserRequest> implements User
 			throw new DaoException("select request by time: sql " + SELECT_BY_USER_LOGIN + " not execute",se);
 		}
 		finally{
-			close();
+		//	close();
 		}
     }
 
@@ -73,8 +68,8 @@ public class UserRequestDaoImpl extends AbstractDao<UserRequest> implements User
     public UserRequest selectRequestByPriority(int priority) throws DaoException {
 		
 		try {
-			TransactionManager txManager = new TransactionManagerImpl();
-			Connection conn = txManager.getConnection();
+			//TransactionManager txManager = new TransactionManagerImpl();
+			Connection conn = getConnection();
 			PreparedStatement ps;
 			ps = conn.prepareStatement(SELECT_BY_PRIORITY);
 			ps.setInt(1, priority);
@@ -86,7 +81,7 @@ public class UserRequestDaoImpl extends AbstractDao<UserRequest> implements User
 		
 		}
 		finally{
-			close();
+		//	close();
 		}
 		
     }
@@ -118,20 +113,20 @@ public class UserRequestDaoImpl extends AbstractDao<UserRequest> implements User
     	
     }
 
-    @Override
+ /*   @Override
     public void close() throws DaoException {
 		try {
 			if (conn != null) conn.close();
 			//if (txManager != null)
 			
 		} catch (SQLException e) {
-			// TODO Автоматически созданный блок catch
+			
 			e.printStackTrace();
 			throw new DaoException("DaoException: " + this.getClass().getName(),e);
 		}
 		
 
-    }
+    }*/
 
     @Override
     public List<UserRequest> selectAll() throws DaoException, NoSuchEntityException {
@@ -170,7 +165,7 @@ public class UserRequestDaoImpl extends AbstractDao<UserRequest> implements User
 	@Override
 	public UserRequest selectRequestByTime(Date time) throws DaoException{
 		try{
-		    conn = txManager.getConnection();
+		    conn = getConnection();
 		    PreparedStatement ps = conn.prepareStatement(SELECT_BY_TIME);
 		    ps.setLong(1, time.getTime());		
 		    ResultSet rs = ps.executeQuery();
@@ -181,7 +176,7 @@ public class UserRequestDaoImpl extends AbstractDao<UserRequest> implements User
 			throw new DaoException("select request by time: sql " + SELECT_BY_TIME + " not execute");
 		}
 		finally{
-			close();
+		//	close();
 		}
 	}
 

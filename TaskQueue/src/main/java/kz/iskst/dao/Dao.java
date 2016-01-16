@@ -21,6 +21,6 @@ public interface Dao<T> {
 	
 	public abstract void deleteBatch(List<Integer> id) throws DaoException;
 	
-	public abstract void close() throws DaoException;
+	//public abstract void close() throws DaoException;
 	
 }

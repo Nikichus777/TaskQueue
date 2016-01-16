@@ -3,21 +3,38 @@
                          "http://java.sun.com/dtd/web-app_2_3.dtd">
                          
 <web-app>
- <display-name>TaskQueue</display-name>
- <servlet>
-  <servlet-name>main</servlet-name>
-  <display-name>main</display-name>
-  <servlet-class>kz.iskst.web.controller.UserRequestController</servlet-class>
- </servlet>
- <servlet-mapping>
-  <servlet-name>main</servlet-name>
-  <url-pattern>/taskqueue</url-pattern>
- </servlet-mapping>
- <servlet-mapping>
-  <servlet-name>main</servlet-name>
-  <url-pattern>/index.jsp</url-pattern>
- </servlet-mapping>
- <session-config>
-  <session-timeout>50</session-timeout>
- </session-config>
+	<display-name>TaskQueue</display-name>
+	<filter>
+		<filter-name>TransactionFilter</filter-name>
+		<filter-class>kz.iskst.web.filter.TransactionFilter</filter-class>
+		<init-param>
+			<param-name>active</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>TransactionFilter</filter-name>
+		<servlet-name>main</servlet-name>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>TransactionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>main</servlet-name>
+		<display-name>main</display-name>
+		<servlet-class>kz.iskst.web.controller.UserRequestController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>main</servlet-name>
+		<url-pattern>/taskqueue</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>main</servlet-name>
+		<url-pattern>/index.jsp</url-pattern>
+	</servlet-mapping>
+	
+	<session-config>
+		<session-timeout>50</session-timeout>
+	</session-config>
 </web-app>

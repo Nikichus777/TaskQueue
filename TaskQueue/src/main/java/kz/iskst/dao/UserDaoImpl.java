@@ -97,19 +97,19 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     
     
-    @Override
+/*    @Override
     public void close() throws DaoException {
 	// TODO Auto-generated method stub
 //	conn.commit();
 //	conn.close();
-    }
+    }*/
 
 
     @Override
 	public User selectByLogin(String login) throws DaoException,
 			NoSuchEntityException {
 		try {
-			Connection conn = new TransactionManagerImpl().getConnection();
+			Connection conn = getConnection();
 			PreparedStatement ps = conn.prepareStatement(SELECT_BY_LOGIN);
 			ps.setString(1, login);
 			ResultSet rs = ps.executeQuery();
