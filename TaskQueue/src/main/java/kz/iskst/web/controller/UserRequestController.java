@@ -57,8 +57,7 @@ public class UserRequestController extends HttpServlet {
 	
 	try {
 	  //  ud.insert(user);
-	    System.out.println("test");
-
+	 
 	    UserRequest ureq = new UserRequest();
 	    ureq.setPriority(5);
 	    ureq.setProblem(Problems.INDORCAD);

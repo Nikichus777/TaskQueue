@@ -14,7 +14,7 @@
 		<div class="nav_button"> Главная</div>
 		<div class="nav_button"> Новости</div>
 		<div class="nav_button"> Войти</div>
-		
+		<div class="nav_button"><a href="registration.html"> Регистрация</a></div>
 	  </div>
 </div> </div>
         <div id="content_container">
@@ -25,7 +25,9 @@
 </div>
 	      
                  <div id="header_lower">  <div id="header_content_boxline">About Us <div id="header_content_boxcontent">
-				 <%@ include file="/fullList.jsp"%>
+				  
+					 <%@ include file="/fullList.jsp"%>
+				
  </div></div> 
           </div>    
         </div>

@@ -70,7 +70,7 @@ public class TransactionFilter implements Filter {
 				logger.warn("CONNECTION  DID ROLLBACK!!");
 				e.printStackTrace();
 
-				throw new RuntimeException();
+				//throw new RuntimeException();
 			} finally {
 				try {
 					if (connection != null)
