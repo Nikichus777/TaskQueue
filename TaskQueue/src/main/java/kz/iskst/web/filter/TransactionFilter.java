@@ -3,7 +3,6 @@ package kz.iskst.web.filter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.concurrent.Callable;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -13,7 +12,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import kz.iskst.dao.ConnectionFactoryFactory.FactoryType;
-import kz.iskst.dao.TransactionManager;
 import kz.iskst.dao.TransactionManagerImpl;
 
 import org.apache.log4j.Logger;
@@ -40,27 +38,30 @@ public class TransactionFilter implements Filter {
 			
 			request.setAttribute("transactionErrors", errors);
 			try {
+				if (connection != null)
 				connection.commit();
 
 			} catch (SQLException se) {
 				try {
+					if (connection != null)
 					connection.rollback();
 				} catch (SQLException e) {
 					logger.warn("CONNECTION DIDN'T ROLLBACK!!");
 					errors.append("Невозможно отменить операцию при ошибке\n");
 					e.printStackTrace();
 				}
-
-				if (se.getSQLState().equals("23000"))
-					logger.warn("value IS NOT UNIQUE");
-				errors.append("Значение логина или email не уникально!\n");
-				se.printStackTrace();
-				// throw new
-				// SQLException("TransactionError:  Value isn't UNIQUE");
+				if (se.getSQLState() != null){
+					if (se.getSQLState().equals("23000")){
+						logger.warn("value IS NOT UNIQUE");
+						errors.append("Значение логина или email не уникально!\n");
+						se.printStackTrace();
+					}
+				}
 			}
 
 			catch (Exception e) {
 				try {
+					if (connection != null)
 					connection.rollback();
 				} catch (SQLException e1) {
 					logger.error("UNKNOWN ERROR ON ROLLBACK CONNECTION");
@@ -91,7 +92,5 @@ public class TransactionFilter implements Filter {
 			
 	}
 
-	public static void main (String ... args){
-		
-	}
+
 }

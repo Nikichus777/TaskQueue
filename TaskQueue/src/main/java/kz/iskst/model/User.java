@@ -84,7 +84,7 @@ public class User {
     public String getLogin() {
         return login;
     }
-    // if (Pattern.matches("^[A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*$", login))
+    
     public void setLogin(String login) {
        this.login = login;
     }

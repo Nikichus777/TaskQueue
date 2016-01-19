@@ -9,12 +9,12 @@
 <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+<body link="white" vlink="white" alink="#ff0000" bgcolor="black">>
 <div id="top_bar_black"> <div id="logo_container"> <div id="logo_image"> </div>  <div id="nav_block"> 
-		<div class="nav_button"> Главная</div>
-		<div class="nav_button"> Новости</div>
-		<div class="nav_button"> Войти</div>
-		<div class="nav_button"><a href="registration.html"> Регистрация</a></div>
+		<div class="nav_button"><a href ="index.jsp" style="color: white"> Главная</a></div>
+		<div class="nav_button"><a href ="news.jsp" style="color: white"> Новости</a></div>
+		<div class="nav_button"><a href ="login.html" style="color: white"> Войти </a></div>
+		<div class="nav_button"><a href="registration.html" style="color: white"> Регистрация</a></div>
 	  </div>
 </div> </div>
         <div id="content_container">
@@ -26,7 +26,7 @@
 	      
                  <div id="header_lower">  <div id="header_content_boxline">About Us <div id="header_content_boxcontent">
 				  
-					 <%@ include file="/fullList.jsp"%>
+					 <%@ include file="/addRequest.jsp"%>
 				
  </div></div> 
           </div>    

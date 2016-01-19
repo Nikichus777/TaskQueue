@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+    <style>
+        span.hidden{display: none;}
+        span.error{display: inline; color: black; background-color: pink;}
+        span.ok{display: inline; color: black; background-color: green;}
+    </style>
+    <script src="js/login.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<br><br>
+
+<p><label for='login'>Введите Логин:</label>
+    <input id="login" name="login" type="text" />
+<span class="hidden" id="loginCheckFailed">
+  
+</span></p>
+<br>
+<p><label for='userpass'>Введите пароль:</label>
+    <input id="userpass" name="userpass" type="password"/>
+</p>
+
+<button id = 'sub' onclick = "checkLogin('')">Войти!</button>
+
+</body>
+</html>

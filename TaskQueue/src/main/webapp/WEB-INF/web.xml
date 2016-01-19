@@ -29,6 +29,16 @@
   <display-name>Validation</display-name>
   <servlet-class>kz.iskst.web.controller.ValidationController</servlet-class>
  </servlet>
+ <servlet>
+  <servlet-name>addUser</servlet-name>
+  <display-name>addUser</display-name>
+  <servlet-class>kz.iskst.web.controller.addUserController</servlet-class>
+ </servlet>
+ <servlet>
+  <servlet-name>LoginController</servlet-name>
+  <display-name>LoginController</display-name>
+  <servlet-class>kz.iskst.web.controller.LoginController</servlet-class>
+ </servlet>
  <servlet-mapping>
   <servlet-name>main</servlet-name>
   <url-pattern>/index.jsp</url-pattern>
@@ -36,6 +46,14 @@
  <servlet-mapping>
   <servlet-name>ValidationReg</servlet-name>
   <url-pattern>/validation</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>addUser</servlet-name>
+  <url-pattern>/addUser</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>LoginController</servlet-name>
+  <url-pattern>/login</url-pattern>
  </servlet-mapping>
  <session-config>
   <session-timeout>50</session-timeout>

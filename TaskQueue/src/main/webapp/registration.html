@@ -6,17 +6,53 @@
     <style>
         span.hidden{display: none;}
         span.error{display: inline; color: black; background-color: pink;}
+        span.ok{display: inline; color: black; background-color: green;}
     </style>
-    <script src="/js/validationReg.js" type="text/javascript"></script>
+    <script src="js/validationReg.js" type="text/javascript"></script>
 </head>
 
 <body>
-<br><br>
 
-<p><label for='username'>Выберите имя:</label>
-    <input id="Text1" name="username" type="text" onchange="checkLogin(this.value,'')" onblur="checkLogin(this.value,'')" />
+<br><br>
+ <form action="addUser" method ="POST">
+<p><label for='userlogin'>Выберите Логин:</label>
+    <input id="userlogin" name="userlogin" type="text" oninput="checkLogin(this.value,'')" />
 <span class="hidden" id="nameCheckFailed">
   Это имя уже используется, выберите другое.
 </span></p>
+<br>
+<p><label for='useremail'>Введите email:</label>
+    <input id="useremail" name="useremail" type="text" oninput="checkEmail(this.value,'')" />
+<span class="hidden" id="emailCheckFailed">
+  Это имя уже используется, выберите другое.
+</span></p>
+
+
+<p><label for='userpassword1'>Введите Пароль:</label>
+    <input id="userpassword1" name="userpassword1" type="text"  oninput="passwordChange()"/>
+<span class="hidden" id="passCheckFailed">
+  Длина пароля не менее 6 символов.
+</span></p>
+
+<p><label for='userpassword2'>Введите Повтор пароля:</label>
+    <input id="userpassword2" name="userpassword2" type="text" oninput="passwordChange()" />
+<span class="hidden" id="pass2CheckFailed">
+  Пароли не совпадают.
+</span></p>
+
+<p><label for='username'>Введите Имя:</label>
+    <input id="username" name="username" type="text"  />
+</p>
+<p><label for='usersurname'>Введите Фамилию:</label>
+    <input id="usersurname" name="usersurname" type="text"  />
+</p>
+<p><label for='userpatronimyc'>Введите Отчество:</label>
+    <input id="userpatronimyc" name="userpatronimyc" type="text"  />
+</p>
+
+
+
+<button id = 'sub' disabled type='submit'>Зарегистрироватся!</button>
+</form>
 </body>
 </html>

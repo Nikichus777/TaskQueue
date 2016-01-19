@@ -4,11 +4,10 @@ import java.beans.PropertyVetoException;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.concurrent.Callable;
-
-import org.apache.log4j.Logger;
 
 import kz.iskst.dao.ConnectionFactoryFactory.FactoryType;
+
+import org.apache.log4j.Logger;
 
 /*
  * You can choose you Connection Pool when you create <code>Connection</code> from <code>ConnectionFactoryFactory</code>
@@ -67,13 +66,10 @@ public class TransactionManagerImpl { //implements TransactionManager {
 		getConnectionHolder().remove();
     }
     
-	//@Override
-	public static <T> T doInTransaction(Callable<T> unitOfWork) throws Exception {
-		// TODO Автоматически созданная заглушка метода
-		return null;
-	}
+	
 
-    /*public <T> T doInTransaction(Callable<T> unitOfWork) throws Exception {
+	/*@Override
+    public <T> T doInTransaction(Callable<T> unitOfWork) throws Exception {
     	
 		logger.debug("start doInTransaction");
     	if (getConnectionHolder().get() == null)

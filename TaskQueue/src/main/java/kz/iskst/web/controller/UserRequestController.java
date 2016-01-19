@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kz.iskst.dao.UserDao;
 import kz.iskst.dao.UserDaoImpl;
@@ -33,16 +34,18 @@ public class UserRequestController extends HttpServlet {
 	    throws ServletException, IOException {
 	StringBuilder error = new StringBuilder("");
 	UserRequestDao urd = new UserRequestDaoImpl();
-	UserDao ud = new UserDaoImpl();
+	/*UserDao ud = new UserDaoImpl();
 	User user = new User();
 	user.setEmail("emylo@mm.ss");
 	user.setGroup(Group.GEODESISTS);
 	user.setName("Michael155");
 	user.setPassword("mypass");
 	user.setSurname("Shumaher");
-	user.setPatronymic("Batkovich");
+	user.setPatronymic("Batkovich");*/
 	List<UserRequest> list = new ArrayList<UserRequest>();	
 	
+	//HttpSession session = req.getSession();
+	//session.setAttribute("login", "molodec");
 	/*
 	 try {
 	   
@@ -58,11 +61,11 @@ public class UserRequestController extends HttpServlet {
 	try {
 	  //  ud.insert(user);
 	 
-	    UserRequest ureq = new UserRequest();
+	   /* UserRequest ureq = new UserRequest();
 	    ureq.setPriority(5);
 	    ureq.setProblem(Problems.INDORCAD);
 	    ureq.setUser(user);
-	   // urd.insert(ureq);
+	    urd.insert(ureq);*/
 	    list = urd.selectAll();
 	    
 	} catch (DaoException | NoSuchEntityException e) {
@@ -86,14 +89,7 @@ public class UserRequestController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 	    throws ServletException, IOException {
-	UserDaoImpl udi = new UserDaoImpl();
-	try {
-	    List<User> userList = udi.selectAll();
-	    req.getParameter("Login");
-	} catch (DaoException | NoSuchEntityException e) {
-	    // TODO Автоматически созданный блок catch
-	    e.printStackTrace();
-	}
+	doGet(req, resp);
 
     }
 
