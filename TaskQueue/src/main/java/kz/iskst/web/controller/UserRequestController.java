@@ -34,6 +34,14 @@ public class UserRequestController extends HttpServlet {
 	    throws ServletException, IOException {
 	StringBuilder error = new StringBuilder("");
 	UserRequestDao urd = new UserRequestDaoImpl();
+	List<UserRequest> list = new ArrayList<UserRequest>();
+	HttpSession session = req.getSession(false);
+	if (session != null){
+    		if (session.getAttribute("login") == null){
+    		    session.removeAttribute("login");			    
+    		}
+	}
+	
 	/*UserDao ud = new UserDaoImpl();
 	User user = new User();
 	user.setEmail("emylo@mm.ss");
@@ -42,7 +50,7 @@ public class UserRequestController extends HttpServlet {
 	user.setPassword("mypass");
 	user.setSurname("Shumaher");
 	user.setPatronymic("Batkovich");*/
-	List<UserRequest> list = new ArrayList<UserRequest>();	
+	
 	
 	//HttpSession session = req.getSession();
 	//session.setAttribute("login", "molodec");

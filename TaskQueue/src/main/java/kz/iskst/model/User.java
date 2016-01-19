@@ -1,7 +1,5 @@
 package kz.iskst.model;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class User {
     private int id;

@@ -35,7 +35,7 @@ public class LoginController extends HttpServlet {
 			if (us.getPassword().equals(req.getParameter("password"))){
 								
 				HttpSession  session = req.getSession(true);
-				session.setAttribute("login", "mylogin");
+				session.setAttribute("login", us.getLogin());
 				logger.debug("SESSION SETATTRIBUTE!!");
 				//req.getRequestDispatcher("/index.jsp").forward(req, resp);
 				//req.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);

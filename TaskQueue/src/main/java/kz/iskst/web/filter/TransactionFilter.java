@@ -29,6 +29,7 @@ public class TransactionFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 
 		if (isActive == true) {
+		    				
 			StringBuilder errors = new StringBuilder("");
 			TransactionManagerImpl.setConnection(FactoryType.C3P0);
 			Connection connection = TransactionManagerImpl.getConnection();

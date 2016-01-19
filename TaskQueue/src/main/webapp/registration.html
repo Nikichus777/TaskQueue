@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" http-equiv="Cache-Control" content="no-cache">
     <title>Регистрационная форма</title>
     <style>
         span.hidden{display: none;}
@@ -12,10 +12,10 @@
 </head>
 
 <body>
-
+<a href ="/TaskQueue/">Главная</a>
 <br><br>
  <form action="addUser" method ="POST">
-<p><label for='userlogin'>Выберите Логин:</label>
+<p ><label for='userlogin'>Выберите Логин:</label>
     <input id="userlogin" name="userlogin" type="text" oninput="checkLogin(this.value,'')" />
 <span class="hidden" id="nameCheckFailed">
   Это имя уже используется, выберите другое.
@@ -50,6 +50,21 @@
     <input id="userpatronimyc" name="userpatronimyc" type="text"  />
 </p>
 
+<p >Выберите свою группу:
+
+		<select  name="usergroup">
+			<option selected value="ROAD">Дорожная</option>
+			<option value="ENGINEER">Инженерная</option>
+			<option value="GEODESISTS">Изыскательская</option>
+			<option value="BUILDERS">ПГС</option>
+			<option value="GEOLOGISTS">Геологическая</option>
+			<option value="BUDGET_CALCULATION">Сметная</option>
+			<option value="MATCHERS">Согласовательная</option>			
+			<option value="ADMINISTRATION">Администрация</option>
+			<option value="ACCOUNTING">Бухгалтерия</option>
+			<option value="OTHERS">Другое</option>
+		</select>
+	</p>
 
 
 <button id = 'sub' disabled type='submit'>Зарегистрироватся!</button>

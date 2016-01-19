@@ -28,7 +28,7 @@ function checkLogin(response)
 
 		
     if (response != '') {
-    	alert("RESPONSE " + response);
+    	
             message1 = document.getElementById('loginCheckFailed');
             
             if (response == '1') {
@@ -44,7 +44,6 @@ function checkLogin(response)
     	login =  document.getElementById('login').value;
     	password = document.getElementById('userpass').value;
     	url = 'login?login=' + login + '&password=' + password;
-    	alert(url);
     	loadXMLDoc(url);
     }
             
@@ -64,9 +63,7 @@ function processReqChange()
         	if (response != null) checkLogin(response);
            
         } else {
-          //  alert("Возникла проблема получения данных:\n" + req.statusText);
-          //  alert("response: " + req.getResponseHeader('userlogin'));
-          //  alert("response text:" + req.responseText);
+            alert("Возникла проблема получения данных:\n" + req.statusText + "response: " + req.getResponseHeader('userlogin') + "response text:" + req.responseText);
         }
     }
 }

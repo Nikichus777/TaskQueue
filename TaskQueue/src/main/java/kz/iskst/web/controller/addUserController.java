@@ -36,12 +36,13 @@ public class addUserController extends HttpServlet {
 		newser.setName(req.getParameter("username"));
 		newser.setSurname(req.getParameter("usersurname"));
 		newser.setPatronymic(req.getParameter("userpatronimyc"));
-		newser.setGroup(Group.ADMINISTRATION);
-		newser.setPassword(req.getParameter("userpassword"));
+		newser.setGroup(req.getParameter("usergroup"));
+		newser.setPassword(req.getParameter("userpassword1"));
 		
 		UserDao ud = new UserDaoImpl();
 		try {
 			ud.insert(newser);
+			resp.sendRedirect("login.html");
 		} catch (DaoException e) {
 			// TODO Автоматически созданный блок catch
 			resp.sendRedirect("error.jsp");

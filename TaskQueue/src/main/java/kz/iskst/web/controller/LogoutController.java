@@ -20,7 +20,9 @@ public class LogoutController extends HttpServlet {
 			throws ServletException, IOException {
 		
 		HttpSession session = req.getSession();
-		session.setAttribute("login", null);		
+		session.setAttribute("login", null);
+		session.removeAttribute("login");
+		resp.sendRedirect("index.jsp");
 	}
 
 	@Override

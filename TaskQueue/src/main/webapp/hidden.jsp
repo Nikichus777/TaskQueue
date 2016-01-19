@@ -4,16 +4,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" http-equiv="Cache-Control" content="no-cache" /> 
 <title>Очередь задач сисадмина КДП</title>
 <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body link="white" vlink="white" alink="#ff0000" bgcolor="black">>
+<body >
 <div id="top_bar_black"> <div id="logo_container"> <div id="logo_image"> </div>  <div id="nav_block"> 
 		<div class="nav_button"><a href ="index.jsp" style="color: white"> Главная</a></div>
 		<div class="nav_button"><a href ="news.jsp" style="color: white"> Новости</a></div>
+		
+		<% if (session.getAttribute("login") == null) { %>
 		<div class="nav_button"><a href ="login.html" style="color: white"> Войти </a></div>
+		<% } else {%>
+		<div class="nav_button"><a href ="logout" style="color: white"> Выйти </a></div>
+		<%} %>
+		
 		<div class="nav_button"><a href="registration.html" style="color: white"> Регистрация</a></div>
 	  </div>
 </div> </div>
@@ -22,11 +28,13 @@
 			свою задачу для системного администратора</div>
           
           
-</div>
-	      
-                 <div id="header_lower">  <div id="header_content_boxline">About Us <div id="header_content_boxcontent">
+</div>	      
+                 <div id="header_lower">  <div id="header_content_boxline">Здравствуйте <% 
+                 String login = (String) session.getAttribute("login");
+                 if (login != null) out.write(login); out.flush(); %> <div id="header_content_boxcontent">
 				  
 					 <%@ include file="/addRequest.jsp"%>
+				<!-- TODO: Сделать данную страницу базой для всех остальных -->
 				
  </div></div> 
           </div>    
@@ -39,10 +47,10 @@
 	    <div id="header_content_lowerboxcontent">Хакимжановой, 7<br />
 	      Казахстан<br />
 	      Костанай<br />
-        городской номер: (7142) 50-77-70<BR />
+        городской номер: (7142) 50-77-70<br />
         kdp_it@mail.ru<br />
         www.dorproject.kz<br />
-        <BR /> 
+        <br /> 
         </div>
 	</div> 
           </div>
