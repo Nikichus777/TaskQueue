@@ -12,7 +12,7 @@ public class User {
     public enum Group {ROAD,ENGINEER,GEODESISTS,BUILDERS,GEOLOGISTS,ADMINISTRATION,ACCOUNTING,BUDGET_CALCULATION,MATCHERS,OTHERS};
     private Group group;
     
-    
+
     public String getPassword() {
         return password;
     }
@@ -91,9 +91,6 @@ public class User {
         return email;
     }
     
-    /*Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-    Matcher matcher = pattern.matcher(email);
-    if (matcher.matches())*/
 
     public void setEmail(String email) {
 	this.email = email;
